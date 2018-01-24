@@ -1,0 +1,63 @@
+
+
+entity ParSystemType {
+	name String required,
+	description String
+}
+	
+entity ParLicenceType {
+	name String required,
+	description String
+}
+
+entity GearInformationSystems {
+
+	name String required,
+	description String,
+	version String,
+    acquisitionDate LocalDate,
+	startDate LocalDate	,
+	responsible String required,
+    responsibleEmail String,
+    provider String,  
+    unitCost String,
+    mainteinanceCost String,
+    creationDate LocalDate,
+    modifyDate LocalDate
+}
+
+
+
+entity ParCoinType {
+	name String required,
+	description String
+}
+
+entity GearSystemFuncionality {
+	name String,
+	description String,
+    creationDate LocalDate,
+    modifyDate LocalDate
+}
+
+
+
+relationship ManyToOne {
+	GearInformationSystems{systemType} to ParSystemType
+    
+    GearInformationSystems{licenceType} to ParLicenceType
+    
+    GearInformationSystems{coinType} to ParCoinType
+    
+    GearSystemFuncionality {informationSystems} to GearInformationSystems
+}
+
+
+
+// Set pagination options
+paginate Gear_SystemFuncionality with infinite-scroll
+paginate Gear_SystemInfo with pagination
+
+dto * with mapstruct
+
+
